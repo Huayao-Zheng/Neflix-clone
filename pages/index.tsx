@@ -1,14 +1,15 @@
 import Head from 'next/head';
 import Image from 'next/image';
 
+import requests from '../utils/requests';
+
 import { Movie } from '../typings';
 
 import { Banner } from '../components/Banner';
 import { Header } from '../components/Header';
+import { Row } from '../components/Row';
 
-import requests from '../utils/requests';
-
-interface Props {
+type Props = {
   netflixOriginals: Movie[];
   trendingNow: Movie[];
   topRated: Movie[];
@@ -17,7 +18,7 @@ interface Props {
   horrorMovies: Movie[];
   romanceMovies: Movie[];
   documentaries: Movie[];
-}
+};
 
 const Home = ({
   netflixOriginals,
@@ -29,9 +30,8 @@ const Home = ({
   romanceMovies,
   documentaries,
 }: Props) => {
-  console.log(netflixOriginals);
   return (
-    <div className="relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]">
+    <div className="relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511]">
       <Head>
         <title>Home - Netflix</title>
         <link rel="icon" href="/favicon.ico" />
@@ -43,12 +43,13 @@ const Home = ({
         <Banner netflixOriginals={netflixOriginals} />
 
         <section>
-          {/* Row */}
-          {/* Row */}
-          {/* Row */}
-          {/* Row */}
-          {/* Row */}
-          {/* Row */}
+          <Row title="Trending Now" movies={trendingNow} />
+          <Row title="Top Rated" movies={topRated} />
+          <Row title="Action Thrillers" movies={actionMovies} />
+          <Row title="Comedies" movies={comedyMovies} />
+          <Row title="Scary Movies" movies={horrorMovies} />
+          <Row title="Romance Movies" movies={romanceMovies} />
+          <Row title="Documentaries" movies={documentaries} />
         </section>
       </main>
       {/* Modal */}

@@ -1,9 +1,9 @@
-export interface Genre {
+export type Genre = {
   id: number;
   name: string;
-}
+};
 
-export interface Movie {
+export type Movie = {
   title: string;
   backdrop_path: string;
   media_type?: string;
@@ -20,9 +20,9 @@ export interface Movie {
   poster_path: string;
   vote_average: number;
   vote_count: number;
-}
+};
 
-export interface Element {
+export type Element = {
   type:
     | 'Bloopers'
     | 'Featurette'
@@ -30,4 +30,4 @@ export interface Element {
     | 'Clip'
     | 'Trailer'
     | 'Teaser';
-}
+};

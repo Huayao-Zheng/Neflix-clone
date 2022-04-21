@@ -5,9 +5,9 @@ import { baseUrl } from '../constants/movie';
 import { FaPlay } from 'react-icons/fa';
 import { InformationCircleIcon } from '@heroicons/react/solid';
 
-interface Props {
+type Props = {
   netflixOriginals: Movie[];
-}
+};
 
 export const Banner = ({ netflixOriginals }: Props) => {
   const [movie, setMovie] = useState<Movie | null>(null);
@@ -17,8 +17,6 @@ export const Banner = ({ netflixOriginals }: Props) => {
       netflixOriginals[Math.floor(Math.random() * netflixOriginals.length)]
     );
   }, [netflixOriginals]);
-
-  console.log(movie);
 
   return (
     <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12">
