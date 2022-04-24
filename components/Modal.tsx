@@ -52,6 +52,8 @@ export const Modal = () => {
 
   const handleClose = () => setShowModal(false);
 
+  console.log(trailer);
+
   return (
     <MuiModal
       open={showModal}
@@ -70,7 +72,11 @@ export const Modal = () => {
 
         <div className="relative pt-[56.25%]">
           <ReactPlayer
-            url={`https://www.youtube.com/watch?v=${trailer}`}
+            url={
+              trailer
+                ? `https://www.youtube.com/watch?v=${trailer}`
+                : 'https://www.youtube.com/watch?v=oic34YA4MeI'
+            }
             width="100%"
             height="100%"
             style={{ position: 'absolute', top: '0', left: '0' }}
@@ -106,8 +112,8 @@ export const Modal = () => {
           </div>
         </div>
 
-        <div>
-          <div>
+        <div className="flex gap-x-16 rounded-b-md bg-[#181818] px-10 py-8">
+          <div className="space-y-6 text-lg">
             <div className="flex items-center gap-x-2 text-sm">
               <p className="font-semibold text-green-400">
                 {currentMovie!.vote_average * 10}% Match
@@ -117,6 +123,26 @@ export const Modal = () => {
               </p>
               <div className="flex h-4 items-center justify-center rounded border border-white/40 px-1.5 text-xs">
                 HD
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-x-10 font-light md:flex-row">
+              <p className="w-5/6">{currentMovie?.overview}</p>
+              <div className="flex flex-col gap-y-3 text-sm">
+                <div>
+                  <span className="text-[gray]">Genres: </span>
+                  {genres?.map((genre) => genre.name).join(', ')}
+                </div>
+
+                <div>
+                  <span className="text-[gray]">Original Language: </span>
+                  {currentMovie?.original_language}
+                </div>
+
+                <div>
+                  <span className="text-[gray]">Total votes: </span>
+                  {currentMovie?.vote_count}
+                </div>
               </div>
             </div>
           </div>
