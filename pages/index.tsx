@@ -11,6 +11,7 @@ import { Row } from '../components/Row';
 import { useAuth } from '../hooks/useAuth';
 import { modalState } from '../atoms/modalAtom';
 import { useRecoilValue } from 'recoil';
+import { Modal } from '../components/Modal';
 
 type Props = {
   netflixOriginals: Movie[];
