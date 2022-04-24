@@ -91,8 +91,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       .finally(() => setLoading(false));
   };
 
-  const contextValue = {};
-
   const memoedValue = useMemo(
     () => ({
       user,
