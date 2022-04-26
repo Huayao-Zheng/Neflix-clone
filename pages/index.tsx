@@ -1,16 +1,17 @@
 import Head from 'next/head';
-import Image from 'next/image';
 
 import requests from '../utils/requests';
 
 import { Movie } from '../typings';
 
-import { Banner } from '../components/Banner';
-import { Header } from '../components/Header';
-import { Row } from '../components/Row';
 import { useAuth } from '../hooks/useAuth';
 import { modalState } from '../atoms/modalAtom';
 import { useRecoilValue } from 'recoil';
+
+import { Header } from '../components/Header';
+import { Banner } from '../components/Banner';
+import { Plans } from '../components/Plans';
+import { Row } from '../components/Row';
 import { Modal } from '../components/Modal';
 
 type Props = {
@@ -36,8 +37,11 @@ const Home = ({
 }: Props) => {
   const { loading } = useAuth();
   const showModal = useRecoilValue(modalState);
+  const subscription = false;
 
-  if (loading) return 'loading';
+  if (loading || subscription === null) return 'loading';
+
+  if (!subscription) return <Plans />;
 
   return (
     <div className={`relative h-screen bg-gradient-to-b lg:h-[140vh]`}>
