@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useAuth } from '../hooks/useAuth';
 
-export const Plans = (props: Props) => {
+export const Plans = () => {
   const { logout } = useAuth();
 
   return (
@@ -31,7 +31,7 @@ export const Plans = (props: Props) => {
         </button>
       </header>
 
-      <main className="max-w-5xl pt-28 pt-28 pb-12 transition-all md:px-10">
+      <main className="max-w-5xl px-5 pt-28 pb-12 transition-all md:px-10">
         <h1 className="mb-3 text-3xl font-medium">
           Choose the plan that's right for you'
         </h1>
@@ -56,6 +56,10 @@ export const Plans = (props: Props) => {
             <div className="planBox">Standard</div>
             <div className="planBox">Standard</div>
           </div>
+
+          {/* Table */}
+
+          <button>Subscribe</button>
         </div>
       </main>
     </div>
