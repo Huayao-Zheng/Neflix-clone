@@ -52,8 +52,6 @@ export const Modal = () => {
 
   const handleClose = () => setShowModal(false);
 
-  console.log(trailer);
-
   return (
     <MuiModal
       open={showModal}
