@@ -1,12 +1,12 @@
 import { useRef, useState } from 'react';
+import { DocumentData } from 'firebase/firestore';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
 import { Movie } from '../typings';
 import { Thumbnail } from './Thumbnail';
 
 type Props = {
   title: string;
-  // movie: Movie[] | DocumentData[];
-  movies: Movie[];
+  movies: Movie[] | DocumentData[];
 };
 
 export const Row = ({ title, movies }: Props) => {

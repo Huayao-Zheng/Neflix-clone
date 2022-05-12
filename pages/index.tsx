@@ -6,7 +6,7 @@ import payments from '../lib/stripe';
 import { getProducts, Product } from '@stripe/firestore-stripe-payments';
 
 import { useAuth } from '../hooks/useAuth';
-import { modalState } from '../atoms/modalAtom';
+import { modalState, movieState } from '../atoms/modalAtom';
 import { useRecoilValue } from 'recoil';
 
 import { Movie } from '../typings';
@@ -17,6 +17,7 @@ import { Plans } from '../components/Plans';
 import { Row } from '../components/Row';
 import { Modal } from '../components/Modal';
 import { useSubscription } from '../hooks/useSubscription';
+import { useList } from '../hooks/useList';
 
 type Props = {
   netflixOriginals: Movie[];
@@ -42,17 +43,21 @@ const Home = ({
   products,
 }: Props) => {
   const { loading, user } = useAuth();
-  const showModal = useRecoilValue(modalState);
   const subscription = useSubscription(user);
+  const showModal = useRecoilValue(modalState);
+  const movie = useRecoilValue(movieState);
+  const list = useList(user?.uid);
 
-  if (loading || subscription === null) return 'loading';
+  if (loading || subscription === null) return null;
 
   if (!subscription) return <Plans products={products} />;
 
   return (
     <div className={`relative h-screen bg-gradient-to-b lg:h-[140vh]`}>
       <Head>
-        <title>Netflix</title>
+        <title>
+          {movie?.title || movie?.original_name || 'Home'} - Netflix
+        </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -65,6 +70,8 @@ const Home = ({
           <Row title="Trending Now" movies={trendingNow} />
           <Row title="Top Rated" movies={topRated} />
           <Row title="Action Thrillers" movies={actionMovies} />
+
+          {list.length > 0 && <Row title="My List" movies={list} />}
 
           <Row title="Comedies" movies={comedyMovies} />
           <Row title="Scary Movies" movies={horrorMovies} />

@@ -11,19 +11,18 @@ interface Props {
   products: Product[];
 }
 
-function account({ products }: Props) {
-  const { user, logout } = useAuth();
+function Account({ products }: Props) {
+  const { user, logout, loading } = useAuth();
   const subscription = useSubscription(user);
 
-  console.log({ products, subscription });
+  if (loading) return null;
 
   return (
-    <div>
+    <div className="">
       <Head>
-        <title>Netflix</title>
+        <title>Account Settings - Netflix</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <header className={`bg-[#141414]`}>
         <Link href="/">
           <img
@@ -41,7 +40,6 @@ function account({ products }: Props) {
           />
         </Link>
       </header>
-
       <main className="mx-auto max-w-6xl px-5 pt-24 pb-12 transition-all md:px-10">
         <div className="flex flex-col gap-x-4 md:flex-row md:items-center">
           <h1 className="text-3xl md:text-4xl">Account</h1>
@@ -87,7 +85,7 @@ function account({ products }: Props) {
   );
 }
 
-export default account;
+export default Account;
 
 export const getStaticProps: GetStaticProps = async () => {
   const products = await getProducts(payments, {
